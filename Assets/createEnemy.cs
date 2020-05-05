@@ -9,6 +9,7 @@ public class createEnemy : MonoBehaviour
     public GameObject m_prefab;
     public GameObject hero;
     float best_time = 0f;
+
     
 
     void Start()
@@ -20,23 +21,51 @@ public class createEnemy : MonoBehaviour
     void Update()
     {
         best_time += Time.deltaTime;
-        times -= Time.deltaTime;
-        if (times < 0)  //倒计时
-        {
-            //产生物体
+
+        if(best_time < 30f)
+		{
+            times -= Time.deltaTime;
+            if (times < 0)  //倒计时
+            {
 
 
-            Vector3 Position = new Vector3(Random.Range(-23f, 23f), Random.Range(-2f, 16f), 0);
-            GameObject.Instantiate(m_prefab, Position, Quaternion.identity);
-            print(Position);
-            //obj.transform.position = Vector3.MoveTowards(obj.transform.position, capsuleObj.transform.position, 1.5f);
+                Vector3 Position = new Vector3(Random.Range(260f, 1270f), Random.Range(-30f, 340f), 0);
+                GameObject.Instantiate(m_prefab, Position, Quaternion.identity);
 
-            
-
-            //重新设置时间为0-10之间的一个随机数   随机时间
-            times = 5f;
+                times = 5f;
 
 
+            }
+        }else if(best_time < 60f)
+		{
+            times -= Time.deltaTime;
+            if (times < 0)  //倒计时
+            {
+
+
+                Vector3 Position = new Vector3(Random.Range(260f, 1270f), Random.Range(-30f, 340f), 0);
+                GameObject.Instantiate(m_prefab, Position, Quaternion.identity);
+
+                times = 4f;
+
+
+            }
+        }else
+		{
+            times -= Time.deltaTime;
+            if (times < 0)  //倒计时
+            {
+                Vector3 Position = new Vector3(Random.Range(260f, 1270f), Random.Range(-30f, 340f), 0);
+                GameObject.Instantiate(m_prefab, Position, Quaternion.identity);
+
+                times = 2.5f;
+
+
+            }
         }
+
+
+
+        
     }
 }

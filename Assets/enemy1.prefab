@@ -103,9 +103,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8773859902103660672}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3f24604b84fac46398bed81b8bd0bdb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hero: {fileID: 2447989265896190163, guid: cb364409057ef474497a088257cb8149, type: 3}
+  hero: {fileID: 4966742399704893265, guid: cb364409057ef474497a088257cb8149, type: 3}
+  component: 0
+  mainSlider: {fileID: 0}

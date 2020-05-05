@@ -1,16 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class heroScript : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float speed = 3;
+    public float speed = 30f;
     Vector3 movement;
     public GameObject enemy;
 
     
-
     public static float lifetime = 0;
     public GameObject ob1;
     public GameObject ob2;
@@ -22,50 +22,138 @@ public class heroScript : MonoBehaviour
 
     public GameObject pack;
 
+    public Slider trans;
+
+    public Sprite spriteA;
+    public Sprite spriteB;
+    public Sprite spriteC;
+
+
     void Start()
     {
-        
+        //Tex = Resources.Load("bird2") as Texture2D;
+        //spriteA = Sprite.Create(Tex, new Rect(171, 0, 171, 95), new Vector2(transform.position.x, transform.position.x));
+
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        DrawLS(gameObject, Input.mousePosition);
+        if(trans.GetComponent<Slider>().value >= 1)
+		{
+            speed = 65f;
+		}
+
+
+        if (trans.GetComponent<Slider>().value == 1)
+        {
+            //spriteA = Sprite.Create(Tex, new Rect(329, 239+40, 126, 126+40), new Vector2(0.5f, 0.5f));
+
+            gameObject.GetComponent<SpriteRenderer>().sprite = spriteC;
+        }
+
+        if (trans.GetComponent<Slider>().value == 3)
+        {
+            //spriteA = Sprite.Create(Tex, new Rect(329, 239+40, 126, 126+40), new Vector2(0.5f, 0.5f));
+
+            gameObject.GetComponent<SpriteRenderer>().sprite = spriteB;
+        }
+
+
+        if (trans.GetComponent<Slider>().value == 2)
+        {
+            //spriteA = Sprite.Create(Tex, new Rect(329, 239+40, 126, 126+40), new Vector2(0.5f, 0.5f));
+
+            gameObject.GetComponent<SpriteRenderer>().sprite = spriteA;
+        }
+
+        if (trans.GetComponent<Slider>().value == 3)
+        {
+            //spriteA = Sprite.Create(Tex, new Rect(329, 239+40, 126, 126+40), new Vector2(0.5f, 0.5f));
+
+            gameObject.GetComponent<SpriteRenderer>().sprite = spriteB;
+        }
+
+
+
+
+        //DrawLS(gameObject, Input.mousePosition);
 
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
 
-        if ((Vector3.Distance(gameObject.transform.position, ob1.transform.position) > 3) || (Vector3.Distance(gameObject.transform.position, ob2.transform.position) > 3))
+        if(gameObject.transform.position.x < 210)
+		{
+            Vector3 right = new Vector3(1, 0, 0);
+            transform.position = transform.position + right;
+
+        }
+
+        if (gameObject.transform.position.x > 1272)
         {
-            Move(h, v);
+            Vector3 left = new Vector3(-1, 0, 0);
+            transform.position = transform.position + left;
+
+        }
+
+        if (gameObject.transform.position.y < 0)
+        {
+            Vector3 up = new Vector3(0, 1, 0);
+            transform.position = transform.position + up;
+
+        }
+
+        if (gameObject.transform.position.y > 305)
+        {
+            Vector3 down = new Vector3(0, -1, 0);
+            transform.position = transform.position + down;
+
+        }
+
+
+        if ((Vector3.Distance(gameObject.transform.position, ob1.transform.position) < 35))
+        {
+            float x = (gameObject.transform.position.x - ob1.transform.position.x) / System.Math.Abs(gameObject.transform.position.x - ob1.transform.position.x);
+            float y = (gameObject.transform.position.y - ob1.transform.position.y) / System.Math.Abs(gameObject.transform.position.y - ob1.transform.position.y);
+            Vector3 r = new Vector3((0.2f * x), (0.2f * y), 0f);
+            gameObject.transform.position = gameObject.transform.position + r;
+        }
+		
+
+
+        else if ((Vector3.Distance(gameObject.transform.position, ob2.transform.position) < 35))
+        {
+            float x = (gameObject.transform.position.x - ob2.transform.position.x) / System.Math.Abs(gameObject.transform.position.x - ob2.transform.position.x);
+            float y = (gameObject.transform.position.y - ob2.transform.position.y) / System.Math.Abs(gameObject.transform.position.y - ob2.transform.position.y);
+            Vector3 r = new Vector3((0.2f * x), (0.2f * y), 0f);
+            gameObject.transform.position = gameObject.transform.position + r;
+        }
+        
+
+
+        else if ((Vector3.Distance(gameObject.transform.position, ob3.transform.position) < 35))
+        {
+            float x = (gameObject.transform.position.x - ob3.transform.position.x) / System.Math.Abs(gameObject.transform.position.x - ob3.transform.position.x);
+            float y = (gameObject.transform.position.y - ob3.transform.position.y) / System.Math.Abs(gameObject.transform.position.y - ob3.transform.position.y);
+            Vector3 r = new Vector3((0.2f * x), (0.2f * y), 0f);
+            gameObject.transform.position = gameObject.transform.position + r;
+        }
+        
+
+
+        else if ((Vector3.Distance(gameObject.transform.position, ob3.transform.position) < 35))
+        {
+
+            float x = (gameObject.transform.position.x - ob4.transform.position.x) / System.Math.Abs(gameObject.transform.position.x - ob4.transform.position.x);
+            float y = (gameObject.transform.position.y - ob4.transform.position.y) / System.Math.Abs(gameObject.transform.position.y - ob4.transform.position.y);
+            Vector3 r = new Vector3((0.2f * x), (0.2f * y), 0f);
+            gameObject.transform.position = gameObject.transform.position + r;
 		}
 		else
 		{
-            float x = (gameObject.transform.position.x - ob1.transform.position.x) / System.Math.Abs(gameObject.transform.position.x - ob1.transform.position.x);
-            float y = (gameObject.transform.position.y - ob1.transform.position.y) / System.Math.Abs(gameObject.transform.position.y - ob1.transform.position.y);
-            Vector3 r = new Vector3((0.2f*x), (0.2f*y), 0f);
-            transform.position = transform.position + r;
-        }
-
-
-        if ((Vector3.Distance(gameObject.transform.position, ob6.transform.position) > 3) || (Vector3.Distance(gameObject.transform.position, ob7.transform.position) > 3))
-        {
             Move(h, v);
-        }
-        else
-        {
-            
-            float x1 = (gameObject.transform.position.x - ob6.transform.position.x) / System.Math.Abs(gameObject.transform.position.x - ob6.transform.position.x);
-            float y1 = (gameObject.transform.position.y - ob6.transform.position.y) / System.Math.Abs(gameObject.transform.position.y - ob6.transform.position.y);
-            Vector3 r1 = new Vector3((0.2f * x1), (0.2f * y1), 0f);
-            transform.position = transform.position + r1;
-        }
-
-        
-        //TempColor = Color.white;
-        //hero.GetComponent<MeshRenderer>().material.color = TempColor;
-
+		}
         
 
 
@@ -73,9 +161,9 @@ public class heroScript : MonoBehaviour
     void Move(float h, float v)
     {
         movement.Set(h, v, 0f);
-        movement = movement.normalized * speed * Time.deltaTime;
+        movement = movement * speed * Time.deltaTime;
         //GetComponent<Rigidbody>().MovePosition(movement + transform.position);//当前位置+移动的位置
-        gameObject.transform.position = movement + transform.position;//与上一行一样的方法
+        gameObject.transform.position = movement + gameObject.transform.position;//与上一行一样的方法
 
     }
 

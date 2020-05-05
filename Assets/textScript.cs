@@ -7,7 +7,7 @@ public class textScript : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    private float speed = 1.5f;
+    
 
     /// <summary>
     /// 计时器
@@ -26,7 +26,7 @@ public class textScript : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        this.GetComponent<Text>().text = "Time: " + timer.ToString();
+        this.GetComponent<Text>().text = "Best Time:\n" + timer.ToString();
     }
 
     
